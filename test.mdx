@@ -1,108 +1,69 @@
-# Quickstart
+## Model Parameters[](#model-parameters)
 
-### Step 1: Install Jan[](https://jan.ai/docs/quickstart#step-1-install-jan)
+A model has three main parameters to configure:
 
-You can run Jan either on your desktop using the Jan desktop app or on a server by installing the Jan server. To get started, check out these pages:
+*   Inference Parameters
+*   Model Parameters
+*   Engine Parameters
 
-*   [Desktop](https://jan.ai/docs/desktop)
-*   [Server](https://jan.ai/docs/server)
+### Inference Parameters[](#inference-parameters)
 
-Once you have installed Jan, you should see the Jan application as shown below without any local model installed:
+Inference parameters are settings that control how an AI model generates outputs. These parameters include the following:
 
-  
+| Parameter | Description |
+| --- | --- |
+| **Temperature** | \- Influences the randomness of the model's output.  
+\- A higher temperature leads to more random and diverse responses, while a lower temperature produces more predictable outputs. |
+| **Top P** | \- Sets a probability threshold, allowing only the most likely tokens whose cumulative probability exceeds the threshold to be considered for generation.  
+\- A lower top-P value (e.g., 0.9) may be more suitable for focused, task-oriented applications, while a higher top-P value (e.g., 0.95 or 0.97) may be better for more open-ended, creative tasks. |
+| **Stream** | \- Enables real-time data processing, which is useful for applications needing immediate responses, like live interactions. It accelerates predictions by processing data as it becomes available.  
+\- Turned on by default. |
+| **Max Tokens** | \- Sets the upper limit on the number of tokens the model can generate in a single output.  
+\- A higher limit benefits detailed and complex responses, while a lower limit helps maintain conciseness. |
+| **Stop Sequences** | \- Defines specific tokens or phrases that signal the model to stop producing further output.  
+\- Use common concluding phrases or tokens specific to your application’s domain to ensure outputs terminate appropriately. |
+| **Frequency Penalty** | \- Modifies the likelihood of the model repeating the same words or phrases within a single output, reducing redundancy in the generated text.  
+\- Increase the penalty to avoid repetition in scenarios where varied language is preferred, such as creative writing or content generation. |
+| **Presence Penalty** | \- Encourages the generation of new and varied concepts by penalizing tokens that have already appeared, promoting diversity and novelty in the output.  
+\- Use a higher penalty for tasks requiring high novelty and variety, such as brainstorming or ideation sessions. |
 
-![Default State](https://jan.ai/_next/static/media/default.10a546df.gif)
+### Model Parameter[](#model-parameter)
 
-  
+Model parameters are the settings that define and configure the model's behavior. These parameters include the following:
 
-### Step 2: Turn on the GPU Acceleration (Optional)[](https://jan.ai/docs/quickstart#step-2-turn-on-the-gpu-acceleration-optional)
+| Parameter | Description |
+| --- | --- |
+| **Prompt Template** | \- This predefined text or framework generates responses or predictions. It is a structured guide that the AI model fills in or expands upon during the generation process.  
+\- For example, a prompt template might include placeholders or specific instructions that direct how the model should formulate its outputs. |
 
-If you have a graphics card, boost model performance by enabling GPU acceleration:
+### Engine Parameters[](#engine-parameters)
 
-1.  Open Jan application.
-2.  Go to **Settings** -> **Advanced Settings** -> **GPU Acceleration**.
-3.  Click the Slider and choose your preferred GPU.
-4.  A success notification saying **Successfully turned on GPU acceleration** will appear when GPU acceleration is activated.
+Engine parameters are the settings that define how the model processes input data and generates output. These parameters include the following:
 
-Ensure you have installed your GPU driver. Please see [Desktop](https://jan.ai/docs/desktop) for more information on activating the GPU acceleration.
+| Parameter | Description |
+| --- | --- |
+| **Context Length** | \- This parameter determines the maximum input amount the model can generate responses. The maximum context length varies with the model used. This setting is crucial for the model’s ability to produce coherent and contextually appropriate outputs.  
+\- For tasks like summarizing long documents that require extensive context, use a higher context length. A lower setting can quicken response times and lessen computational demand for simpler queries or brief interactions. |
 
-  
+By default, Jan sets the **Context Length** to the maximum supported by your model, which may slow down response times. For lower-spec devices, reduce **Context Length** to **1024** or **2048**, depending on your device's specifications, to improve speed.
 
-![Turn on GPU acceleration](https://jan.ai/_next/static/media/gpu2.b790c4ae.gif)
+## Customize the Model Settings[](#customize-the-model-settings)
 
-### Step 3: Download a Model[](https://jan.ai/docs/quickstart#step-3-download-a-model)
+Adjust model settings for a specific conversation:
 
-Jan offers various local AI models tailored to different needs, all ready for download directly to your device:
-
-1.  Go to the **Hub**.
-2.  Select the models that you would like to install. To see model details, click the **dropdown** button.
-3.  You can also paste the Hugging Face model's **ID** or **URL** in the search bar.
-
-Ensure you select the appropriate model size by balancing performance, cost, and resource considerations in line with your task's specific requirements and hardware specifications.
-
-4.  Click the **Download** button.
-
-  
-
-![Download a Model](https://jan.ai/_next/static/media/download-model2.ee533cd1.gif)
-
-  
-
-5.  Go to the **Thread** tab.
-6.  Click the **Model** tab button.
-7.  Choose either **Local** or **Remote** section.
-8.  Adjust the configurations as needed.
-    
-    Please see [Model Parameters](https://jan.ai/docs/models#model-parameters) for detailed model configuration.
-    
+1.  Navigate to a **thread**.
+2.  Click the **Model** tab.
 
   
 
-![Parameters](https://jan.ai/_next/static/media/inf.a7a79683.gif)
+![Specific Conversation](https://nextra.site/_next/static/media/model-tab.6d04248f.png) 3. You can customize the following parameters:
 
-### Step 4: Customize the Assistant Instruction[](https://jan.ai/docs/quickstart#step-4-customize-the-assistant-instruction)
-
-Customize Jan's assistant behavior by specifying queries, commands, or requests in the Assistant Instructions field to get the most responses from your assistant. To customize, follow the steps below:
-
-1.  On the **Thread** section, navigate to the right panel.
-2.  Select the **Assistant** tab menu.
-3.  Provide a specific guideline under the **Instructions** field.
+*   Inference parameters
+*   Model parameters
+*   Engine parameters
 
   
 
-![Assistant Instruction](https://jan.ai/_next/static/media/asst.1e3b9d75.gif)
+![Specific Conversation](https://nextra.site/_next/static/media/model-parameters.38205a3c.png)
 
-  
-
-### Step 5: Start Thread[](https://jan.ai/docs/quickstart#step-5-start-thread)
-
-Once you have downloaded a model and customized your assistant instruction, you can start chatting with the model.
-
-  
-
-![Chat with a Model](https://jan.ai/_next/static/media/chat.0eda13da.gif)
-
-  
-
-### Step 6: Connect to a Remote API[](https://jan.ai/docs/quickstart#step-6-connect-to-a-remote-api)
-
-Jan also offers access to remote models hosted on external servers. You can link up with any Remote AI APIs compatible with OpenAI. Jan comes with numerous extensions that facilitate connections to various remote AI APIs. To explore and connect to Remote APIs, follow these steps:
-
-1.  Click the **Gear Icon (⚙️)** on the bottom left of your screen.
-2.  Click the **OpenAI** under the **Model Provider** section.
-3.  Fill in the API **URL** and **Keys** in the OpenAI Inference Engine section.
-
-  
-
-![Connect Remote API](https://jan.ai/_next/static/media/server-openai2.5cd8835f.gif)
-
-  
-
-## What's Next?[](https://jan.ai/docs/quickstart#whats-next)
-
-Now that Jan is up and running, explore further:
-
-1.  Learn how to download and manage your [models](https://jan.ai/docs/models).
-2.  Customize Jan's [application settings](https://jan.ai/docs/settings) according to your preferences.
-3.  Discover supported [integrations](https://jan.ai/integrations) to expand Jan's capabilities.
-4.  Find out how to use [Jan as a client and a server](https://jan.ai/docs/local-api).
+[Managing Models](/docs/models/manage-models "Managing Models")[Knowledge Retrieval](/docs/tools/retrieval "Knowledge Retrieval")
