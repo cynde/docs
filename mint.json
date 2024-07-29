@@ -58,7 +58,8 @@
         {
           "group": "test",
           "pages": [
-            "test"
+            "test",
+            "introduction"
           ]
         }
       ]
