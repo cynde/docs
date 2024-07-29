@@ -55,7 +55,12 @@
         "introduction",
         "quickstart",
         "development",
-        "test"
+        {
+          "group": "test",
+          "pages": [
+            "test"
+          ]
+        }
       ]
     },
     {
