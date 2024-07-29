@@ -1,0 +1,58 @@
+---
+title: "LM Studio"
+description: ""
+---
+
+# LM Studio
+
+## Integrate LM Studio with Jan[](#integrate-lm-studio-with-jan)
+
+[LM Studio (opens in a new tab)](https://lmstudio.ai/) enables you to explore, download, and run local Large Language Models (LLMs). You can integrate Jan with LM Studio using two methods:
+
+1.  Integrate the LM Studio server with Jan UI
+2.  Migrate your downloaded model from LM Studio to Jan.
+
+To integrate LM Studio with Jan, follow the steps below:
+
+This guide will demonstrate how to connect Jan to [LM Studio (opens in a new tab)](https://lmstudio.ai/) using the second method. We'll use the [Phi 2 - GGUF (opens in a new tab)](https://huggingface.co/TheBloke/phi-2-GGUF) model from Hugging Face as our example.
+
+### Step 1: Server Setup[](#step-1-server-setup)
+
+1.  Access the `Local Inference Server` within LM Studio.
+2.  Select your desired model.
+3.  Start the server after configuring the port and options.
+4.  Navigate back to Jan.
+5.  Navigate to the **Settings** > **Model Provider**.
+6.  In the **OpenAI** section, add the full web address of the LM Studio server.
+
+  
+
+![Server Setup](https://jan.ai/_next/static/media/LM-Studio-v1.280ab17b.gif)
+
+*   Replace `(port)` with your chosen port number. The default is 1234.
+*   Leave the API Key field blank.
+
+### Step 2: Model Configuration[](#step-2-model-configuration)
+
+1.  Navigate to the **Hub**.
+2.  we will use the `phi-2` model in this example. Insert the `https://huggingface.co/TheBloke/phi-2-GGUF` link into the search bar.
+3.  Select and download the model you want to use.
+
+  
+
+![Download Model](https://jan.ai/_next/static/media/LM-Studio-v2.b7317f4b.gif)
+
+### Step 3: Start the Model[](#step-3-start-the-model)
+
+1.  Proceed to the **Threads**.
+2.  Click the **Model** tab.
+3.  Select the `phi-2` model and configure the model parameters.
+4.  Start chatting with the model.
+
+  
+
+![Start Model](https://jan.ai/_next/static/media/LM-Studio-v3.d2d0c403.gif)
+
+Last updated on July 25, 2024
+
+[TensorRT-LLM](/docs/built-in/tensorrt-llm "TensorRT-LLM")[Ollama](/docs/local-models/ollama "Ollama")

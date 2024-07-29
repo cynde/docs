@@ -50,43 +50,95 @@
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "GET STARTED",
       "pages": [
-        "introduction",
-        "quickstart",
-        "development",
+        "GET STARTED/overview",
+        "GET STARTED/quickstart",
         {
-          "group": "test",
+          "group": "Desktop",
           "pages": [
-            "test",
-            "introductions"
+            "GET STARTED/desktop",
+            "GET STARTED/Desktop/mac",
+            "GET STARTED/Desktop/windows",
+            "GET STARTED/Desktop/linux"
+          ]
+        },
+        "GET STARTED/jan-data-folder"
+      ]
+    },
+    {
+      "group": "BASIC USAGE",
+      "pages": [
+        {
+          "group": "Models",
+          "pages": [
+            "BASIC USAGE/models",
+            "BASIC USAGE/Models/managing-models",
+            "BASIC USAGE/Models/model-parameters"
+          ]
+        },
+        {
+          "group": "Tools",
+          "pages": [
+            "BASIC USAGE/tools",
+            "BASIC USAGE/Tools/knowledge-retrieval"
+          ]
+        },
+        "BASIC USAGE/threads",
+        "BASIC USAGE/settings",
+        "BASIC USAGE/keyboard-shortcuts",
+        "BASIC USAGE/local-api-server"
+      ]
+    },
+    {
+      "group": "MODEL PROVIDER",
+      "pages": [
+        {
+          "group": "Built-in Models",
+          "pages": [
+            "MODEL PROVIDER/built-in-models",
+            "MODEL PROVIDER/Built-in Models/llama.cpp",
+            "MODEL PROVIDER/Built-in Models/tensorrt-llm"
+          ]
+        },
+        {
+          "group": "Local Models",
+          "pages": [
+            "MODEL PROVIDER/local-models",
+            "MODEL PROVIDER/Local Models/lm-studio",
+            "MODEL PROVIDER/Local Models/ollama"
+          ]
+        },
+        {
+          "group": "Remote APIs",
+          "pages": [
+            "MODEL PROVIDER/remote-apis",
+            "MODEL PROVIDER/Remote APIs/openai-api",
+            "MODEL PROVIDER/Remote APIs/azure-openai-api",
+            "MODEL PROVIDER/Remote APIs/groq-api",
+            "MODEL PROVIDER/Remote APIs/mistral-ai-api",
+            "MODEL PROVIDER/Remote APIs/openrouter",
+            "MODEL PROVIDER/Remote APIs/any-openai-compatible-api",
+            "MODEL PROVIDER/Remote APIs/martian-api",
+            "MODEL PROVIDER/Remote APIs/cohere-api",
+            "MODEL PROVIDER/Remote APIs/anthropic-api",
+            "MODEL PROVIDER/Remote APIs/nvidia-nim-api"
           ]
         }
       ]
     },
     {
-      "group": "Essentials",
+      "group": "EXTENSIONS",
       "pages": [
-        "essentials test/markdown",
-        "essentials test/code",
-        "essentials test/images",
-        "essentials test/settings",
-        "essentials test/navigation",
-        "essentials test/reusable-snippets"
+        "EXTENSIONS/overview",
+        "EXTENSIONS/installing-an-extension"
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "TROUBLESHOOTING",
       "pages": [
-        "api-reference/introduction"
-      ]
-    },
-    {
-      "group": "Endpoint Examples",
-      "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "TROUBLESHOOTING/troubleshooting",
+        "TROUBLESHOOTING/error-codes"
       ]
     }
   ],

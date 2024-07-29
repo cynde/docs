@@ -1,0 +1,209 @@
+---
+title: "Troubleshooting"
+description: ""
+---
+
+# Troubleshooting
+
+## Broken Build[](#broken-build)
+
+To resolve the issue where your Jan is stuck in a broken build after installation.
+
+MacWindowsLinux
+
+1.  Uninstall Jan.
+    
+2.  Delete Application Data, Cache, and User Data:
+    
+
+`   # Step 1: Delete the application data    ## Newer versions    rm -rf ~/Library/Application\ Support/jan    ## Versions 0.2.0 and older    rm -rf ~/Library/Application\ Support/jan-electron        # Step 2: Clear application cache    rm -rf ~/Library/Caches/jan*        # Step 3: Remove all user data    rm -rf ~/jan            `
+
+3.  If you are using a version before `0.4.2`, you need to run the following commands:
+
+``   ps aux | grep nitro    # Looks for processes like `nitro` and `nitro_arm_64`, and kill them one by one by process ID    kill -9 <PID>            ``
+
+4.  Download the latest version of Jan from our [homepage (opens in a new tab)](https://jan.ai/).
+
+Following these steps, you can cleanly uninstall and reinstall Jan, ensuring a smooth and error-free experience with the latest version.
+
+Before reinstalling Jan, ensure it's completely removed from all shared spaces if installed on multiple user accounts on your device.
+
+## Troubleshooting NVIDIA GPU[](#troubleshooting-nvidia-gpu)
+
+To resolve issues when the Jan app does not utilize the NVIDIA GPU on Windows and Linux systems.
+
+#### 1\. Ensure GPU Mode Requirements[](#1-ensure-gpu-mode-requirements)
+
+WindowsLinux
+
+##### NVIDIA Driver
+
+*   Install an [NVIDIA Driver (opens in a new tab)](https://www.nvidia.com/Download/index.aspx) supporting CUDA 11.7 or higher.
+    *   Use the following command to verify the installation:
+
+`   nvidia-smi            `
+
+##### CUDA Toolkit
+
+*   Install a [CUDA toolkit (opens in a new tab)](https://developer.nvidia.com/cuda-downloads) compatible with your NVIDIA driver.
+    *   Use the following command to verify the installation:
+
+`   nvcc --version            `
+
+#### 2\. Switch to GPU Mode[](#2-switch-to-gpu-mode)
+
+If your system supports it, Jan defaults to CPU mode but automatically switches to GPU mode, selecting the GPU with the highest VRAM. Check this setting in `Settings` > `Advanced Settings`.
+
+##### Troubleshooting Tips[](#troubleshooting-tips)
+
+If GPU mode isn't enabled by default:
+
+1.  Confirm that you have installed an NVIDIA driver supporting CUDA 11.7 or higher. Refer to [CUDA compatibility (opens in a new tab)](https://docs.nvidia.com/deploy/cuda-compatibility/index.html#binary-compatibility__table-toolkit-driver).
+2.  Ensure compatibility of the CUDA toolkit with your NVIDIA driver. Refer to [CUDA compatibility (opens in a new tab)](https://docs.nvidia.com/deploy/cuda-compatibility/index.html#binary-compatibility__table-toolkit-driver).
+3.  Add CUDA's `.so` libraries to the `LD_LIBRARY_PATH` for Linux. Ensure that CUDA's `.dll` libraries are in the PATH for Windows. Refer to [Windows setup (opens in a new tab)](https://docs.nvidia.com/cuda/cuda-installation-guide-microsoft-windows/index.html#environment-setup).
+
+If you encounter an error message indicating that loading a model requires additional dependencies, follow these steps:
+
+1.  Click on **Install Additional Dependencies** in the error message.
+2.  You will be redirected to the **Tensor RT LLM Inference Engine** section.
+3.  Click the **Install** button to install additional dependencies.
+
+#### 3\. Check GPU Settings[](#3-check-gpu-settings)
+
+1.  Navigate to `Settings` > `Advanced Settings` > `Jan Data Folder` to access GPU settings.
+2.  Open the `settings.json` file in the `settings` folder. Here's an example:
+
+`   {    "notify": true,    "run_mode": "gpu",    "nvidia_driver": {    "exist": true,    "version": "531.18"    },    "cuda": {    "exist": true,    "version": "12"    },    "gpus": [    {    "id": "0",    "vram": "12282"    },    {    "id": "1",    "vram": "6144"    },    {    "id": "2",    "vram": "6144"    }    ],    "gpu_highest_vram": "0"    }            `
+
+#### 4\. Restart Jan[](#4-restart-jan)
+
+Restart the Jan application to make sure it works.
+
+##### Troubleshooting Tips[](#troubleshooting-tips-1)
+
+*   Ensure the `nvidia_driver` and `cuda` fields indicate installed software.
+*   If `gpus` field is empty or lacks your GPU, check the NVIDIA driver and CUDA toolkit installations.
+*   For further assistance, share the `settings.json` file.
+
+#### Tested Configurations[](#tested-configurations)
+
+*   **Windows 11 Pro 64-bit:**
+    
+    *   GPU: NVIDIA GeForce RTX 4070ti
+    *   CUDA: 12.2
+    *   NVIDIA driver: 531.18 (Bare metal)
+*   **Ubuntu 22.04 LTS:**
+    
+    *   GPU: NVIDIA GeForce RTX 4070ti
+    *   CUDA: 12.2
+    *   NVIDIA driver: 545 (Bare metal)
+*   **Ubuntu 20.04 LTS:**
+    
+    *   GPU: NVIDIA GeForce GTX 1660ti
+    *   CUDA: 12.1
+    *   NVIDIA driver: 535 (Proxmox VM passthrough GPU)
+*   **Ubuntu 18.04 LTS:**
+    
+    *   GPU: NVIDIA GeForce GTX 1660ti
+    *   CUDA: 12.1
+    *   NVIDIA driver: 535 (Proxmox VM passthrough GPU)
+
+#### Common Issues and Solutions[](#common-issues-and-solutions)
+
+1.  If the issue persists, install the [Nightly version](/guides/quickstart#nightly-releases).
+2.  Ensure your (V)RAM is accessible; some users with virtual RAM may require additional configuration.
+3.  Seek assistance in [Jan Discord (opens in a new tab)](https://discord.gg/mY69SZaMaC).
+
+## How to Get Error Logs[](#how-to-get-error-logs)
+
+To get the error logs of your Jan application, follow the steps below:
+
+#### Jan Application[](#jan-application)
+
+1.  Navigate to the main dashboard.
+2.  Click the **gear icon (⚙️)** on the bottom left of your screen.
+3.  Under the **Settings screen**, click the **Advanced Settings**.
+4.  On the **Jan Data Folder** click the **folder icon (📂)** to access the data.
+5.  Click the **logs** folder.
+
+#### Jan UI[](#jan-ui)
+
+1.  Open your Unix or Linux terminal.
+2.  Use the following commands to get the recent 50 lines of log files:
+
+`   tail -n 50 ~/jan/logs/app.log            `
+
+#### Jan API Server[](#jan-api-server)
+
+1.  Open your Unix or Linux terminal.
+2.  Use the following commands to get the recent 50 lines of log files:
+
+`   tail -n 50 ~/jan/logs/server.log            `
+
+⚠️
+
+Ensure to redact any private or sensitive information when sharing logs or error details.
+
+## Permission Denied[](#permission-denied)
+
+When running Jan, you might encounter the following error message:
+
+`   Uncaught (in promise) Error: Error invoking layout-480796bff433a3a3.js:538 remote method 'installExtension':    Error Package /Applications/Jan.app/Contents/Resources/app.asar.unpacked/pre-install/janhq-assistant-extension-1.0.0.tgz does not contain a valid manifest:    Error EACCES: permission denied, mkdtemp '/Users/username/.npm/_cacache/tmp/ueCMn4'            `
+
+Permission problems mainly cause this error during installation. To resolve this issue, follow these steps:
+
+1.  Open your terminal.
+    
+2.  Execute the following command to change ownership of the `~/.npm` directory to the current user:
+    
+
+`   sudo chown -R $(whoami) ~/.npm            `
+
+This command ensures that the necessary permissions are granted for Jan's installation, resolving the encountered error.
+
+## Something's Amiss[](#somethings-amiss)
+
+When you start a chat with a model and encounter a Something's Amiss error, here's how to resolve it:
+
+1.  Ensure your OS is up to date.
+2.  Choose a model smaller than 80% of your hardware's V/RAM. For example, on an 8GB machine, opt for models smaller than 6 GB.
+3.  Install the latest [Nightly release](/guides/quickstart#nightly-releases) or [clear the application cache](/docs/troubleshooting#broken-build) when reinstalling Jan.
+4.  Confirm your V/RAM accessibility, mainly if using virtual RAM.
+5.  Nvidia GPU users should download [CUDA (opens in a new tab)](https://developer.nvidia.com/cuda-downloads).
+6.  Linux users, ensure your system meets the requirements of gcc 11, g++ 11, cpp 11, or higher. Refer to this [link](/docs/troubleshooting#troubleshooting-nvidia-gpu) for details.
+7.  You might use the wrong port when you [check the app logs](/docs/troubleshooting#how-to-get-error-logs) and encounter the Bind address failed at 127.0.0.1:3928 error. To check the port status, try using the `netstat` command, like the following:
+
+MacWindowsLinux
+
+`   netstat -an | grep 3928            `
+
+`Netstat` displays the contents of various network-related data structures for active connections.
+
+⚠️
+
+Jan uses the following ports:
+
+*   Jan and Cortex API Server: `1337`
+*   Jan Documentation: `3001`
+
+## Undefined Issue[](#undefined-issue)
+
+If you experience an undefined or unusual issue, please follow the steps below:
+
+1.  Delete Jan's extension folder located at `~{users}/jan/`.
+2.  Restart the Jan application.
+
+## Unexpected Token[](#unexpected-token)
+
+Encountering the `Unexpected token` error when initiating a chat with OpenAI models is mainly caused by your OpenAI key or where you access your OpenAI from. This issue can be solved through the following steps:
+
+1.  Obtain an OpenAI API key from [OpenAI's developer platform (opens in a new tab)](https://platform.openai.com/) and integrate it into your application.
+    
+2.  Using a VPN could potentially solve the issue, especially if it's related to region locking for accessing OpenAI services. Connecting through a VPN may bypass such restrictions and successfully initiate chats with OpenAI models.
+    
+
+If you have any questions or are looking for support, please don't hesitate to contact us via our [Discord community (opens in a new tab)](https://discord.gg/Dt7MxDyNNZ) or create a new issue in our [GitHub repository (opens in a new tab)](https://github.com/janhq/jan/issues/new/choose).
+
+Last updated on July 25, 2024
+
+[Installing an Extension](/docs/installing-extension "Installing an Extension")[Error Codes](/docs/error-codes "Error Codes")
